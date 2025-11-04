@@ -118,7 +118,7 @@ SOCIAL_LINKS = [
 ACHIEVEMENTS = [
     {
         "slug": "achievement-01",
-        "title": "15U AA Provincial Champions 2025\nVMBA Expos 15U AA Blue",
+        "title": "15U AA Provincial Champions 2025\nVMB Expos 15U AA Blue",
         "image_alt": "Prov-Team-8354",
     },
     {
@@ -138,17 +138,17 @@ ACHIEVEMENTS = [
     },
     {
         "slug": "achievement-05",
-        "title": "Steven Dodd Memorial Tournament Champions 2025\nVMBA Expos 15U AA Blue",
+        "title": "Steven Dodd Memorial Tournament Champions 2025\nVMB Expos 15U AA Blue",
         "image_alt": "Resize_PXL_20250701_002711715",
     },
     {
         "slug": "achievement-06",
-        "title": "VMBA 13U A Tier One - Western Lower Mainland Champions 2025 - VMBA Expos",
-        "image_alt": "VMBA 13U A Tier One - Western Lower Mainland Champions2",
+        "title": "VMB 13U A Tier One - Western Lower Mainland Champions 2025 - VMB Expos",
+        "image_alt": "VMB 13U A Tier One - Western Lower Mainland Champions2",
     },
     {
         "slug": "achievement-07",
-        "title": "Ross Tournament Champions 2025\nVMBA Expos 15U AA Blue",
+        "title": "Ross Tournament Champions 2025\nVMB Expos 15U AA Blue",
         "image_alt": "15U-AA-Team-Blue-Ross-Tournament-Champions-2025-e1754637283675",
     },
     {
@@ -158,8 +158,8 @@ ACHIEVEMENTS = [
     },
     {
         "slug": "achievement-09",
-        "title": "VMBA 13U A Tier Two - Western Lower Mainland Champions 2025 - VMBA Red Sox",
-        "image_alt": "VMBA 13U A Tier Two - Western Lower Mainland Champions",
+        "title": "VMB 13U A Tier Two - Western Lower Mainland Champions 2025 - VMB Red Sox",
+        "image_alt": "VMB 13U A Tier Two - Western Lower Mainland Champions",
     },
     {
         "slug": "achievement-10",
