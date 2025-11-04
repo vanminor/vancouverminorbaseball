@@ -54,9 +54,9 @@ def main():
     )
 
     create_image(
-        IMAGE_DIR / "logo.png",
+        IMAGE_DIR / "vmba_logo.png",
         (400, 400),
-        ["Team Logo", "logo.png"],
+        ["Team Logo", "vmba_logo.png"],
         PALETTE[2],
         "#0a1f44",
     )
