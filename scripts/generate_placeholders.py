@@ -1,3 +1,4 @@
+import argparse
 from pathlib import Path
 import sys
 
@@ -18,7 +19,18 @@ PALETTE = [
 ]
 
 
-def create_image(path: Path, size: tuple[int, int], lines: list[str], fill: str, text_color: str):
+def create_image(
+    path: Path,
+    size: tuple[int, int],
+    lines: list[str],
+    fill: str,
+    text_color: str,
+    overwrite: bool = False,
+):
+    if path.exists() and not overwrite:
+        print(f"Skipping existing image: {path.name}")
+        return
+
     image = Image.new("RGB", size, color=fill)
     draw = ImageDraw.Draw(image)
     font = ImageFont.load_default()
@@ -42,23 +54,36 @@ def create_image(path: Path, size: tuple[int, int], lines: list[str], fill: str,
 
 
 def main():
-    IMAGE_DIR.mkdir(parents=True, exist_ok=True)
+    parser = argparse.ArgumentParser(
+        description="Generate placeholder images for the site."
+    )
+    parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Regenerate placeholder images even if they already exist.",
+    )
+    args = parser.parse_args()
 
-    hero_lines = ["Hero Banner", "hero-banner.jpg", "Replace with feature photo"]
+    IMAGE_DIR.mkdir(parents=True, exist_ok=True)
+    overwrite = args.overwrite
+
+    hero_lines = ["Hero Banner", "vmb_hero-banner.jpg", "Replace with feature photo"]
     create_image(
-        IMAGE_DIR / "hero-banner.jpg",
+        IMAGE_DIR / "vmb_hero-banner.jpg",
         (1600, 600),
         hero_lines,
         PALETTE[0],
         "#ffffff",
+        overwrite=overwrite,
     )
 
     create_image(
-        IMAGE_DIR / "logo.png",
+        IMAGE_DIR / "vmb_logo.png",
         (400, 400),
-        ["Team Logo", "logo.png"],
+        ["Team Logo", "vmb_logo.png"],
         PALETTE[2],
         "#0a1f44",
+        overwrite=overwrite,
     )
 
     for index, achievement in enumerate(ACHIEVEMENTS, start=1):
@@ -75,6 +100,7 @@ def main():
             lines,
             PALETTE[palette_index],
             "#0a1f44" if palette_index in {0, 3} else "#ffffff",
+            overwrite=overwrite,
         )
 
 
