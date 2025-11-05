@@ -44,6 +44,10 @@ a:focus {
     background: var(--color-light-blue);
     color: var(--color-navy);
     box-shadow: 0 10px 30px rgba(10, 31, 68, 0.12);
+    max-width: var(--max-width);
+    margin: 1.5rem auto 2rem;
+    border-radius: 24px;
+    overflow: hidden;
 }
 
 .header-top {
