@@ -239,7 +239,10 @@ a:focus {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     color: var(--color-white);
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem;
+    max-width: var(--max-width);
+    border-radius: 24px;
+    overflow: hidden;
 }
 
 .hero-media {
@@ -254,6 +257,7 @@ a:focus {
     display: block;
     object-fit: cover;
     object-position: center top;
+    border-radius: inherit;
 }
 
 .hero-overlay {
@@ -261,6 +265,7 @@ a:focus {
     inset: 0;
     background: linear-gradient(120deg, rgba(10, 31, 68, 0.35), rgba(27, 79, 145, 0.15));
     pointer-events: none;
+    border-radius: inherit;
 }
 
 .hero-content {

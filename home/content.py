@@ -118,7 +118,7 @@ SOCIAL_LINKS = [
 ACHIEVEMENTS = [
     {
         "slug": "achievement-01",
-        "title": "15U AA Provincial Champions 2025\nVCB Expos 15U AA Blue",
+        "title": "15U AA Provincial Champions 2025\nVMB Expos 15U AA Blue",
         "image_alt": "Prov-Team-8354",
     },
     {
@@ -128,12 +128,12 @@ ACHIEVEMENTS = [
     },
     {
         "slug": "achievement-05",
-        "title": "Steven Dodd Memorial Tournament Champions 2025\nVCB Expos 15U AA Blue",
+        "title": "Steven Dodd Memorial Tournament Champions 2025\nVMB Expos 15U AA Blue",
         "image_alt": "Resize_PXL_20250701_002711715",
     },
     {
         "slug": "achievement-07",
-        "title": "Ross Tournament Champions 2025\nVCB Expos 15U AA Blue",
+        "title": "Ross Tournament Champions 2025\nVMB Expos 15U AA Blue",
         "image_alt": "15U-AA-Team-Blue-Ross-Tournament-Champions-2025-e1754637283675",
     },
     {
