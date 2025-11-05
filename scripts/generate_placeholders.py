@@ -78,6 +78,15 @@ def main():
     )
 
     create_image(
+        IMAGE_DIR / "registration-hero.jpg",
+        (1600, 600),
+        ["Registration Hero", "registration-hero.jpg"],
+        PALETTE[3],
+        "#0a1f44",
+        overwrite=overwrite,
+    )
+
+    create_image(
         IMAGE_DIR / "programs-hero.jpg",
         (1600, 600),
         ["Programs Hero", "programs-hero.jpg"],

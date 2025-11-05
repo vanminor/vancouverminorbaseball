@@ -40,26 +40,5 @@
     </div>
 </footer>
 
-<script>
-    (function () {
-        const navToggle = document.querySelector('.nav-toggle');
-        const menuWrapper = document.getElementById('primary-menu');
-
-        if (navToggle && menuWrapper) {
-            navToggle.addEventListener('click', () => {
-                const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-                navToggle.setAttribute('aria-expanded', String(!expanded));
-                menuWrapper.classList.toggle('is-open');
-            });
-        }
-
-        document.querySelectorAll('.submenu-toggle').forEach((toggle) => {
-            toggle.addEventListener('click', () => {
-                const expanded = toggle.getAttribute('aria-expanded') === 'true';
-                toggle.setAttribute('aria-expanded', String(!expanded));
-                toggle.parentElement.classList.toggle('submenu-open');
-            });
-        });
-    }());
-</script>
+{% include "home/includes/nav_script.html" %}
 {% endblock %}

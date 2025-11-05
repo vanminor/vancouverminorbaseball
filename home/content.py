@@ -26,6 +26,43 @@ PROGRAMS_PAGE = {
     ),
 }
 
+REGISTRATION_PAGE = {
+    "title": "Registration",
+    "eyebrow": "Join Vancouver Minor Baseball",
+    "tagline": "Registration information for the 2026 season is coming soon.",
+    "hero_image": "images/registration-hero.jpg",
+    "hero_image_label": "registration-hero.jpg",
+    "intro": (
+        "Geographical boundaries: Vancouver Minor Baseball welcomes athletes who reside within the City of Vancouver. "
+        "Families outside of the city limits are invited to apply with VMB once a release from their home association has been granted."
+    ),
+    "sections": [
+        {
+            "title": "Age Eligibility",
+            "body": (
+                "VMB programs are offered at the 13U, 15U, 18U, and 26U divisions. Players must be the stated age or "
+                "younger as of December 31, 2025. Division requirements will be reaffirmed for the 2026 season when registration opens."
+            ),
+        },
+        {
+            "title": "Little League Pathway",
+            "body": (
+                "Players who remain Little League eligible—12 years old or younger as of August 31 of the current calendar year—"
+                "are encouraged to continue with their local Little League club before transitioning to Vancouver Minor Baseball. "
+                "Links to each Vancouver-area Little League will be provided below to help families connect directly."
+            ),
+        },
+        {
+            "title": "Next Steps",
+            "body": (
+                "Our registration team is finalizing season logistics, fee schedules, and key dates for 2026. "
+                "Sign up for email updates or check back here later this fall to secure your spot for the upcoming season."
+            ),
+        },
+    ],
+    "divisions": ["13U", "15U", "18U", "26U"],
+}
+
 NAVIGATION = [
     {"label": "Home", "url": "/", "children": []},
     {

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+{% include "home/includes/site_header.html" %}
+
+<main>
+    <section class="hero">
+        <div class="hero-media">
+            <img src="{% static registration.hero_image %}" alt="Replace {{ registration.hero_image_label }} with a registration feature photo">
+            <span class="image-label">{{ registration.hero_image_label }}</span>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content container home-hero registration-hero">
+            {% if registration.eyebrow %}
+                <span class="hero-eyebrow">{{ registration.eyebrow }}</span>
+            {% endif %}
+            <h1>{{ registration.title }}</h1>
+            {% if registration.tagline %}
+                <p class="hero-subtitle">{{ registration.tagline }}</p>
+            {% endif %}
+            <div class="hero-message hero-message--compact">
+                <p>{{ registration.intro }}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-sections container">
+        <div class="info-grid">
+            <article class="info-card info-card--accent">
+                <h2>Division Snapshot</h2>
+                <p>We currently field competitive and development teams in the following divisions:</p>
+                <ul>
+                    {% for division in registration.divisions %}
+                        <li>{{ division }}</li>
+                    {% endfor %}
+                </ul>
+                <p class="info-note">
+                    Divisional offerings are reviewed annually and will be reconfirmed when registration formally opens.
+                </p>
+            </article>
+            {% for section in registration.sections %}
+                <article class="info-card{% if forloop.counter|divisibleby:2 %} info-card--accent{% endif %}">
+                    <h2>{{ section.title }}</h2>
+                    <p>{{ section.body }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% include "home/includes/nav_script.html" %}
+{% endblock %}

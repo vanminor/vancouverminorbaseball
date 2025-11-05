@@ -9,6 +9,7 @@ from .content import (
     HERO,
     NAVIGATION,
     PROGRAMS_PAGE,
+    REGISTRATION_PAGE,
     SOCIAL_LINKS,
 )
 
@@ -63,6 +64,16 @@ class ProgramsPageView(TemplateView):
         context = super().get_context_data(**kwargs)
         context.update(base_context())
         context["programs"] = PROGRAMS_PAGE
+        return context
+
+
+class RegistrationPageView(TemplateView):
+    template_name = "home/registration.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(base_context())
+        context["registration"] = REGISTRATION_PAGE
         return context
 
 

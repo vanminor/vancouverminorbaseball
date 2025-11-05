@@ -1,0 +1,74 @@
+<script>
+    (function () {
+        const navToggle = document.querySelector('.nav-toggle');
+        const menuWrapper = document.getElementById('primary-menu');
+
+        if (navToggle && menuWrapper) {
+            navToggle.addEventListener('click', () => {
+                const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', String(!expanded));
+                menuWrapper.classList.toggle('is-open');
+
+                if (expanded) {
+                    menuWrapper.querySelectorAll('.menu-item.submenu-open').forEach((item) => {
+                        item.classList.remove('submenu-open');
+                        const link = item.querySelector(':scope > a[aria-expanded]');
+                        if (link) {
+                            link.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                }
+            });
+        }
+
+        const submenuLinks = document.querySelectorAll('.menu-item.has-children > a[aria-haspopup="true"]');
+        const mobileQuery = window.matchMedia('(max-width: 900px)');
+
+        submenuLinks.forEach((link) => {
+            const parentItem = link.parentElement;
+
+            link.addEventListener('click', (event) => {
+                const submenu = parentItem.querySelector(':scope > .menu');
+                if (!submenu) {
+                    return;
+                }
+
+                if (mobileQuery.matches) {
+                    const isOpen = parentItem.classList.contains('submenu-open');
+                    if (!isOpen) {
+                        event.preventDefault();
+                        parentItem.classList.add('submenu-open');
+                        link.setAttribute('aria-expanded', 'true');
+                    } else {
+                        parentItem.classList.remove('submenu-open');
+                        link.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+
+            link.addEventListener('mouseenter', () => {
+                if (!mobileQuery.matches) {
+                    link.setAttribute('aria-expanded', 'true');
+                }
+            });
+
+            link.addEventListener('mouseleave', () => {
+                if (!mobileQuery.matches && !parentItem.classList.contains('submenu-open')) {
+                    link.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            link.addEventListener('focus', () => {
+                if (!mobileQuery.matches) {
+                    link.setAttribute('aria-expanded', 'true');
+                }
+            });
+
+            link.addEventListener('blur', () => {
+                if (!mobileQuery.matches && !parentItem.classList.contains('submenu-open')) {
+                    link.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    }());
+</script>
