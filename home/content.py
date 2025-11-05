@@ -129,13 +129,13 @@ NAVIGATION = [
 SOCIAL_LINKS = [
     {
         "name": "Facebook",
-        "url": "https://www.facebook.com/vmbaexposbaseball",
+        "url": "https://www.facebook.com/vancouverminorbaseball",
         "icon": "facebook",
         "icon_path": "icons/facebook.svg",
     },
     {
         "name": "Instagram",
-        "url": "https://www.instagram.com/vmbaexposbaseball/",
+        "url": "https://www.instagram.com/vanminor_baseball/",
         "icon": "instagram",
         "icon_path": "icons/instagram.svg",
     },
