@@ -1,6 +1,6 @@
-# Vancouver Minor Baseball – Home Site (https://vancouverminor.com)
+# Vancouver Minor Baseball – Main Site (https://vancouverminor.com)
 
-This repository contains the “Home” subdomain for Vancouver Minor Baseball. It provides a polished public-facing site that highlights the organization’s philosophy, programs, and achievements, and is intended to run alongside other applications on the same infrastructure (for example `dev.vancouverminor.com`).
+This repository contains the primary public-facing site for Vancouver Minor Baseball. It highlights the club’s philosophy, programs, and achievements, and lives alongside other apps that occupy their own subdomains (for example `dev.vancouverminor.com`).
 
 The stack is intentionally lightweight:
 
@@ -33,7 +33,7 @@ Because the project is simple, most customization happens through data dictionar
         │   ├── nav.html          # Recursive menu renderer
         │   └── nav_script.html   # Shared navigation behavior script
         ├── index.html            # Home page
-        ├── programs.html         # Programs subdomain page
+        ├── programs.html         # Programs page
         ├── registration.html     # Registration page
         └── page.html             # Placeholder page used for unimplemented routes
 ```
@@ -72,7 +72,7 @@ Because the site is mostly static, productivity comes from editing `content.py` 
 
 ## Production Deployment on DigitalOcean (Ubuntu 20.04+)
 
-The following steps assume you already operate other subdomains (e.g. `dev.vancouverminor.com`) on the same Droplet and that you want this app to live at `https://home.vancouverminor.com`. Adjust paths and names to match your environment.
+The following steps assume you already operate other subdomains (e.g. `dev.vancouverminor.com`) on the same Droplet and that this application should serve the apex domain at `https://vancouverminor.com`. Adjust paths and names to suit your environment.
 
 ### 1. Prepare the Server
 
@@ -103,13 +103,13 @@ Decide on a base path for web apps, e.g. `/var/www/vancouverminor`.
 sudo mkdir -p /var/www/vancouverminor
 sudo chown $USER:$USER /var/www/vancouverminor
 cd /var/www/vancouverminor
-git clone <your-repo-url> home_site
+git clone <your-repo-url> website
 ```
 
 ### 3. Set Up the Virtual Environment
 
 ```bash
-cd home_site
+cd website
 python3 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
@@ -145,27 +145,27 @@ pip install gunicorn
 Test that Gunicorn can serve the project:
 
 ```bash
-gunicorn --bind 0.0.0.0:8000 projectname.wsgi
+gunicorn --bind 0.0.0.0:8000 vancouverminor.wsgi
 ```
 
 If successful, stop the test with `Ctrl+C`.
 
-Create a systemd service file, e.g. `/etc/systemd/system/home-site.service`:
+Create a systemd service file, e.g. `/etc/systemd/system/vancouverminor.service`:
 
 ```ini
 [Unit]
-Description=Gunicorn instance for home.vancouverminor.com
+Description=Gunicorn instance for vancouverminor.com
 After=network.target
 
 [Service]
 User=www-data
 Group=www-data
-WorkingDirectory=/var/www/vancouverminor/home_site
-Environment="PATH=/var/www/vancouverminor/home_site/venv/bin"
-ExecStart=/var/www/vancouverminor/home_site/venv/bin/gunicorn \
+WorkingDirectory=/var/www/vancouverminor/website
+Environment="PATH=/var/www/vancouverminor/website/venv/bin"
+ExecStart=/var/www/vancouverminor/website/venv/bin/gunicorn \
           --workers 3 \
-          --bind unix:/var/www/vancouverminor/home_site/home-site.sock \
-          projectname.wsgi:application
+          --bind unix:/var/www/vancouverminor/website/vancouverminor.sock \
+          vancouverminor.wsgi:application
 Restart=always
 
 [Install]
@@ -176,28 +176,28 @@ Reload systemd and enable the service:
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl enable --now home-site
-sudo systemctl status home-site
+sudo systemctl enable --now vancouverminor
+sudo systemctl status vancouverminor
 ```
 
 ### 5. Configure Nginx
 
-Create a new server block `/etc/nginx/sites-available/home.vancouverminor.com`:
+Create a new server block `/etc/nginx/sites-available/vancouverminor.com`:
 
 ```nginx
 server {
     listen 80;
-    server_name home.vancouverminor.com;
+    server_name vancouverminor.com www.vancouverminor.com;
 
     location = /favicon.ico { access_log off; log_not_found off; }
 
     location /static/ {
-        alias /var/www/vancouverminor/home_site/static/;
+        alias /var/www/vancouverminor/website/static/;
     }
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/var/www/vancouverminor/home_site/home-site.sock;
+        proxy_pass http://unix:/var/www/vancouverminor/website/vancouverminor.sock;
     }
 }
 ```
@@ -205,7 +205,7 @@ server {
 Enable the site and test:
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/home.vancouverminor.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/vancouverminor.com /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 ```
@@ -225,7 +225,7 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 Run Certbot using the Nginx plugin (this will edit the server block to listen on 443 and configure redirects):
 
 ```bash
-sudo certbot --nginx -d home.vancouverminor.com
+sudo certbot --nginx -d vancouverminor.com -d www.vancouverminor.com
 ```
 
 Follow the prompts. Certbot will create the necessary certificates and update the Nginx config.
@@ -238,10 +238,10 @@ sudo certbot renew --dry-run
 
 ### 7. Integrate with Existing Subdomains
 
-Because multiple sites share the same Droplet:
+Because the apex domain shares infrastructure with other subdomains:
 
 - Each app should have its own systemd service, socket, static root, and Nginx server block.
-- Ensure DNS has an `A` record for `home.vancouverminor.com` pointing to the Droplet’s IP.
+- Ensure DNS has `A` / `CNAME` records for both `vancouverminor.com` and `www.vancouverminor.com` pointing to the Droplet’s IP. Keep existing records for subdomains like `dev.vancouverminor.com`.
 - To avoid certificate rate limits, only request certificates for subdomains that will serve traffic.
 - Keep firewall rules permissive for HTTP/HTTPS (e.g. `sudo ufw allow 'Nginx Full'`).
 
@@ -249,7 +249,7 @@ Because multiple sites share the same Droplet:
 
 - **Deploy updates**: pull latest changes, reinstall dependencies if needed, re-run `collectstatic`, then restart Gunicorn:
   ```bash
-  cd /var/www/vancouverminor/home_site
+  cd /var/www/vancouverminor/website
   source venv/bin/activate
   git pull origin main
   pip install -r requirements.txt
@@ -273,4 +273,3 @@ Because multiple sites share the same Droplet:
 4. Document any new deployment steps in this README so future developers stay aligned.
 
 With this structure and deployment workflow, future developers can confidently maintain the `home.vancouverminor.com` subdomain alongside the organization’s other applications. 
-
