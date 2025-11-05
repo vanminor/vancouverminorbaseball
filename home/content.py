@@ -68,9 +68,7 @@ NAVIGATION = [
     {
         "label": "Registration",
         "url": "/registration/",
-        "children": [
-            {"label": "Funding", "url": "/funding/", "children": []},
-        ],
+        "children": [],
     },
     {
         "label": "Programs",
