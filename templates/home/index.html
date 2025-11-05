@@ -8,7 +8,6 @@
     <section class="hero">
         <div class="hero-media">
             <img src="{% static 'images/vmb_hero-banner.jpg' %}" alt="Replace vmb_hero-banner.jpg with a feature photo">
-            <span class="image-label">vmb_hero-banner.jpg</span>
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content container home-hero">
@@ -42,7 +41,6 @@
                     <article class="achievement-card">
                         <div class="image-frame">
                             <img src="{% static 'images/'|add:achievement.slug|add:'.png' %}" alt="Replace {{ achievement.slug }}.png – {{ achievement.image_alt }}">
-                            <span class="image-label">{{ achievement.slug }}.png</span>
                         </div>
                         <div class="card-body">
                             {% for line in achievement.lines %}
@@ -59,9 +57,6 @@
 <footer class="site-footer">
     <div class="container">
         <p>{{ footer_text }}</p>
-        <p class="powered">
-            Powered by <a href="https://www.teamsnap.com/" target="_blank" rel="noopener">TeamSnap&reg;</a> | Want your own Club and League Website? <a href="https://www.teamsnap.com/leagues-and-clubs" target="_blank" rel="noopener">Learn More</a>
-        </p>
     </div>
 </footer>
 

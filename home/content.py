@@ -72,8 +72,6 @@ NAVIGATION = [
             {"label": "Funding", "url": "/funding/", "children": []},
         ],
     },
-    {"label": "Player Development", "url": "/player-development/", "children": []},
-    {"label": "Sponsors", "url": "/sponsors/", "children": []},
     {
         "label": "Programs",
         "url": "/programs/",
@@ -124,34 +122,6 @@ NAVIGATION = [
                 ],
             },
             {"label": "All-Girls Baseball", "url": "/girls-baseball/", "children": []},
-        ],
-    },
-    {
-        "label": "Fields",
-        "url": "/fields/",
-        "children": [
-            {"label": "Field Locations & Schedules", "url": "/fields/", "children": []},
-            {"label": "Field Preparation", "url": "/field-prep/", "children": []},
-        ],
-    },
-    {
-        "label": "TeamSnap",
-        "url": "/teamsnap/",
-        "children": [
-            {"label": "How to Access TeamSnap", "url": "/teamsnap/", "children": []},
-            {"label": "Parents & Players", "url": "/parent/", "children": []},
-            {"label": "Team Managers", "url": "/team-manager/", "children": []},
-            {"label": "Coaches", "url": "/coaches/", "children": []},
-        ],
-    },
-    {
-        "label": "People",
-        "url": "#",
-        "children": [
-            {"label": "Coach info", "url": "/coach-info/", "children": []},
-            {"label": "Umpires", "url": "/umpires/", "children": []},
-            {"label": "Volunteering", "url": "/volunteering/", "children": []},
-            {"label": "Contact Us", "url": "/contact-us/", "children": []},
         ],
     },
 ]

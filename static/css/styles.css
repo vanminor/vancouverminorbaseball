@@ -578,18 +578,6 @@ main {
     object-fit: cover;
 }
 
-.image-label {
-    position: absolute;
-    bottom: 0.75rem;
-    right: 0.75rem;
-    background: rgba(10, 31, 68, 0.85);
-    color: var(--color-white);
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    letter-spacing: 0.03em;
-}
-
 .card-body {
     padding: 1.75rem 1.75rem 2rem;
     display: flex;
@@ -617,11 +605,6 @@ main {
 
 .site-footer p {
     margin: 0.5rem 0;
-}
-
-.powered a {
-    color: var(--color-light-blue);
-    font-weight: 600;
 }
 
 .page-content {
