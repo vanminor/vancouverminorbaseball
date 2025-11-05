@@ -1,4 +1,4 @@
-# Vancouver Minor Baseball – Home Site
+# Vancouver Minor Baseball – Home Site (https://vancouverminor.com)
 
 This repository contains the “Home” subdomain for Vancouver Minor Baseball. It provides a polished public-facing site that highlights the organization’s philosophy, programs, and achievements, and is intended to run alongside other applications on the same infrastructure (for example `dev.vancouverminor.com`).
 
